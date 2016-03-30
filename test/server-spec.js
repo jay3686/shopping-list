@@ -21,3 +21,13 @@ tape.test("POST: items", function(t){
     t.deepEqual(res.body.name, "Toast");
   }).end(t.end);
 });
+
+tape.test("POST: items - empty body", function(t){
+  request(server)
+  .post("/items")
+  .send(undefined)
+  .expect(400)
+  .expect(function(res){
+    t.deepEqual(res.body.error, "Invalid item body");
+  }).end(t.end);
+});

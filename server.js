@@ -13,7 +13,7 @@ app.get('/items', function(req, res) {
 });
 
 app.post('/items', jsonParser, function(req, res) {
-    if (!req.body) {
+    if (!req.body || !req.body.name) {
         return res.status(400).json({error: 'Invalid item body'});
     }
 
