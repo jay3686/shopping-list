@@ -1,6 +1,9 @@
 var request = require("supertest");
 var server = require("../server.js");
+var Item = require('../models/item');
+var seed = require('../db/seed');
 var tape = require("tape");
+global.environment = 'test';
 
 // should list items on get
 tape.test("GET: items", function(t){
@@ -14,7 +17,7 @@ tape.test("GET: items", function(t){
     t.equals(typeof res.body[0], 'object');
     t.not(res.body[0].id, undefined);
     t.not(res.body[0].name, undefined);
-    t.equals(typeof res.body[0].id, 'number');
+    t.equals(typeof res.body[0].id, 'string');
     t.equals(typeof res.body[0].name, 'string');
     t.equals(res.body[0].name, 'Broad beans');
     t.equals(res.body[1].name, 'Tomatoes');
@@ -34,7 +37,7 @@ tape.test("POST: items", function(t){
     t.equals(typeof res.body, 'object');
     t.not(res.body.id, undefined);
     t.not(res.body.name, undefined);
-    t.equals(typeof res.body.id, 'number');
+    t.equals(typeof res.body.id, 'string');
     t.equals(typeof res.body.name, 'string');
     t.equals(res.body.name, "Toast");
   }).end(t.end);
@@ -62,7 +65,7 @@ tape.test("PUT: items", function(t){
     t.equals(typeof res.body, 'object');
     t.not(res.body.id, undefined);
     t.not(res.body.name, undefined);
-    t.equals(typeof res.body.id, 'number');
+    t.equals(typeof res.body.id, 'string');
     t.equals(typeof res.body.name, 'string');
     t.equals(res.body.name, "Milk");
   }).end(t.end);
@@ -79,7 +82,7 @@ tape.test("PUT: items - non existing item", function(t){
     t.equals(typeof res.body, 'object');
     t.not(res.body.id, undefined);
     t.not(res.body.name, undefined);
-    t.equals(typeof res.body.id, 'number');
+    t.equals(typeof res.body.id, 'string');
     t.equals(typeof res.body.name, 'string');
     t.equals(res.body.id, 7);
     t.equals(res.body.name, "New Milk");
@@ -98,7 +101,7 @@ tape.test("DELETE: items", function(t){
     t.equals(typeof res.body, 'object');
     t.not(res.body.id, undefined);
     t.not(res.body.name, undefined);
-    t.equals(typeof res.body.id, 'number');
+    t.equals(typeof res.body.id, 'string');
     t.equals(typeof res.body.name, 'string');
     t.equals(res.body.id, 7);
     t.equals(res.body.name, "New Milk");
