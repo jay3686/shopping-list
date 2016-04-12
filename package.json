@@ -2,8 +2,9 @@
   "name": "shopping-list",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "tape 'test/**/**-spec.js'",
     "test-watch": "watch 'npm run test -s' ."
   },
