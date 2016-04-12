@@ -3,6 +3,7 @@ var server = require("../server.js");
 var Item = require('../models/item');
 var seed = require('../db/seed');
 var tape = require("tape");
+var mongoose = require('mongoose');
 global.environment = 'test';
 
 var fixture_id;
@@ -171,6 +172,7 @@ tape.test("after", function(t) {
     if(err) {
       t.fail('test data teardown failed');
     }
+    mongoose.disconnect();
     t.end();
   });
 });
