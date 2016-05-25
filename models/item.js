@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var ItemSchema = new mongoose.Schema({
-  name: { type: String, required: true }
+  name: { type: String, required: true },
 });
 
 var Item = mongoose.model('Item', ItemSchema);
@@ -10,7 +10,7 @@ if (!ItemSchema.options.toJSON) {
   ItemSchema.options.toJSON = {};
 }
 
-ItemSchema.options.toJSON.transform =  function(doc, ret) {
+ItemSchema.options.toJSON.transform =  function (doc, ret) {
   // Set the id from the retrun object value which will be a string.
   ret.id = ret._id;
 

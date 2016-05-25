@@ -1,10 +1,10 @@
 var Item = require('../models/item');
 
-exports.run = function(callback, errback) {
+exports.run = function (callback, errback) {
   Item.create({ name: 'Broad beans' },
               { name: 'Tomatoes' },
               { name: 'Peppers' },
-    function(err, items) {
+    function (err, items) {
       if (err) {
         errback(err);
         return;
@@ -15,10 +15,10 @@ exports.run = function(callback, errback) {
 
 if (require.main === module) {
   require('./connect');
-  exports.run(function() {
+  exports.run(function () {
     var mongoose = require('mongoose');
     mongoose.disconnect();
-  }, function(err) {
+  }, function (err) {
     console.error(err);
   });
 }

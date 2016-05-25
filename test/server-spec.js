@@ -8,22 +8,22 @@ global.environment = 'test';
 
 var fixture_id;
 
-tape.test("before", function(t) {
-  seed.run(function(data) {
+tape.test("before", function (t) {
+  seed.run(function (data) {
     fixture_id = data.id;
     t.end();
-  }, function(err) {
+  }, function (err) {
     t.fail('test data setup failed');
   });
 });
 
 // should list items on get
-tape.test("GET: items", function(t){
+tape.test("GET: items", function (t){
   request(server)
   .get("/items")
   .expect(200)
   .expect('Content-Type', /json/)
-  .expect(function(res){
+  .expect(function (res){
     t.equals(typeof res.body, 'object',
       'response body should be an object');
     t.equals(res.body.length, 3,
@@ -44,18 +44,18 @@ tape.test("GET: items", function(t){
       'the second item should be "Tomatoes"');
     t.equals(res.body[2].name, 'Peppers',
       'the third item should be "Peoppers"');
-  }).end(t.end); //<-- We have to call SuperTest.end() to shut down the server,
+  }).end(t.end); // <-- We have to call SuperTest.end() to shut down the server,
   // We pass it t.end() so that tape knows we're done with this async test
 });
 
 // should add an item on post
-tape.test("POST: items", function(t){
+tape.test("POST: items", function (t){
   request(server)
   .post("/items")
-  .send({name: "Toast"})
+  .send({ name: "Toast" })
   .expect(201)
   .expect('Content-Type', /json/)
-  .expect(function(res){
+  .expect(function (res){
     t.equals(typeof res.body, 'object',
       'response body should be an object');
     t.not(res.body.id, undefined,
@@ -71,26 +71,26 @@ tape.test("POST: items", function(t){
   }).end(t.end);
 });
 
-tape.test("POST: items - empty body", function(t){
+tape.test("POST: items - empty body", function (t){
   request(server)
   .post("/items")
   .send(undefined)
   .expect(400)
   .expect('Content-Type', /json/)
-  .expect(function(res){
+  .expect(function (res){
     t.deepEqual(res.body.error, "Invalid item body",
       'trying to create with empty body should return error');
   }).end(t.end);
 });
 
 // should edit an item on put
-tape.test("PUT: items", function(t){
+tape.test("PUT: items", function (t){
   request(server)
   .put("/items/" + fixture_id)
-  .send({name: "Milk"})
+  .send({ name: "Milk" })
   .expect(200)
   .expect('Content-Type', /json/)
-  .expect(function(res){
+  .expect(function (res){
     t.equals(typeof res.body, 'object',
       'response body should be an object');
     t.not(res.body.id, undefined,
@@ -107,13 +107,13 @@ tape.test("PUT: items", function(t){
 });
 
 // create an item on put if id not exists
-tape.test("PUT: items - non existing item", function(t){
+tape.test("PUT: items - non existing item", function (t){
   request(server)
   .put("/items/feedca75deadbeef0f00d001")
-  .send({name: "New Milk"})
+  .send({ name: "New Milk" })
   .expect(200)
   .expect('Content-Type', /json/)
-  .expect(function(res){
+  .expect(function (res){
     t.equals(typeof res.body, 'object',
       'response body should be an object');
     t.not(res.body.id, undefined,
@@ -131,12 +131,12 @@ tape.test("PUT: items - non existing item", function(t){
   }).end(t.end);
 });
 
-tape.test("DELETE: items", function(t){
+tape.test("DELETE: items", function (t){
   request(server)
   .delete("/items/" + fixture_id)
   .expect(200)
   .expect('Content-Type', /json/)
-  .expect(function(res){
+  .expect(function (res){
     t.equals(typeof res.body, 'object',
       'response body should be an object');
     t.not(res.body.id, undefined,
@@ -155,21 +155,21 @@ tape.test("DELETE: items", function(t){
 });
 
 //  non existing item
-tape.test("DELETE: items - non existing item", function(t){
+tape.test("DELETE: items - non existing item", function (t){
   request(server)
   .delete("/items/" + fixture_id)
   .expect(404)
   .expect('Content-Type', /json/)
-  .expect(function(res){
+  .expect(function (res){
     t.deepEqual(res.body.error, "Not Found",
       'deleting an invalid item should fail');
   }).end(t.end);
 });
 
 
-tape.test("after", function(t) {
-  Item.remove(function(err, data) {
-    if(err) {
+tape.test("after", function (t) {
+  Item.remove(function (err, data) {
+    if (err) {
       t.fail('test data teardown failed');
     }
     mongoose.disconnect();

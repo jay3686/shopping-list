@@ -1,7 +1,7 @@
 var Item = require('../models/item');
 
-exports.save = function(name, callback, errback) {
-  Item.create({ name: name }, function(err, item) {
+exports.save = function (name, callback, errback) {
+  Item.create({ name: name }, function (err, item) {
     if (err) {
       errback(err);
       return;
@@ -10,8 +10,8 @@ exports.save = function(name, callback, errback) {
   });
 };
 
-exports.list = function(callback, errback) {
-  Item.find(function(err, items) {
+exports.list = function (callback, errback) {
+  Item.find(function (err, items) {
     if (err) {
       errback(err);
       return;
@@ -20,8 +20,8 @@ exports.list = function(callback, errback) {
   });
 };
 
-exports.get = function(id, callback, errback) {
-  Item.findOne({_id: id}, function(err, item) {
+exports.get = function (id, callback, errback) {
+  Item.findOne({ _id: id }, function (err, item) {
     if (err) {
       errback(err);
       return;
@@ -30,8 +30,8 @@ exports.get = function(id, callback, errback) {
   });
 };
 
-exports.delete = function(id, callback, errback) {
-  Item.findOneAndRemove({_id: id}, function(err, item) {
+exports.delete = function (id, callback, errback) {
+  Item.findOneAndRemove({ _id: id }, function (err, item) {
     if (err) {
       errback(err);
       return;
@@ -40,12 +40,12 @@ exports.delete = function(id, callback, errback) {
   });
 };
 
-exports.update = function(id, name, callback, errback) {
+exports.update = function (id, name, callback, errback) {
   Item.findOneAndUpdate(
-    {_id: id},
-    {name: name},
-    {new: true, upsert: true},
-    function(err, item) {
+    { _id: id },
+    { name: name },
+    { new: true, upsert: true },
+    function (err, item) {
       if (err) {
         errback(err);
         return;

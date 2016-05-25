@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.use('/', itemRoutes);
-app.use('*', function(req, res) {
+app.use('*', function (req, res) {
   res.status(404).json({ message: 'Not Found' });
 });
 
