@@ -39,11 +39,11 @@ tape.test("GET: items", function (t){
     t.equals(typeof res.body[0].name, 'string',
       'item name should be a string');
     t.equals(res.body[0].name, 'Broad beans',
-      'the first item should be "Broan Beans"');
+      'the first item should be "Broad Beans"');
     t.equals(res.body[1].name, 'Tomatoes',
       'the second item should be "Tomatoes"');
     t.equals(res.body[2].name, 'Peppers',
-      'the third item should be "Peoppers"');
+      'the third item should be "Peppers"');
   }).end(t.end); // <-- We have to call SuperTest.end() to shut down the server,
   // We pass it t.end() so that tape knows we're done with this async test
 });
