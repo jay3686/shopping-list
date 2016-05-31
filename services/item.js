@@ -14,9 +14,9 @@ exports.list = function (callback, errback) {
   Item.find(function (err, items) {
     if (err) {
       errback(err);
-      return;
+      return [];
     }
-    callback(items);
+    return callback(items);
   });
 };
 

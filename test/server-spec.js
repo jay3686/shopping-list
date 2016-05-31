@@ -44,7 +44,8 @@ tape.test("GET: items", function (t){
       'the second item should be "Tomatoes"');
     t.equals(res.body[2].name, 'Peppers',
       'the third item should be "Peppers"');
-  }).end(t.end); // <-- We have to call SuperTest.end() to shut down the server,
+  })
+  .end(t.end); // <-- We have to call SuperTest.end() to shut down the server,
   // We pass it t.end() so that tape knows we're done with this async test
 });
 
@@ -68,7 +69,8 @@ tape.test("POST: items", function (t){
       'item name should be a string');
     t.equals(res.body.name, "Toast",
       'item name should be Toast');
-  }).end(t.end);
+  })
+  .end(t.end);
 });
 
 tape.test("POST: items - empty body", function (t){
@@ -80,7 +82,8 @@ tape.test("POST: items - empty body", function (t){
   .expect(function (res){
     t.deepEqual(res.body.error, "Invalid item body",
       'trying to create with empty body should return error');
-  }).end(t.end);
+  })
+  .end(t.end);
 });
 
 // should edit an item on put
@@ -103,7 +106,8 @@ tape.test("PUT: items", function (t){
       'item name should be a string');
     t.equals(res.body.name, "Milk",
       'item name should be Milk');
-  }).end(t.end);
+  })
+  .end(t.end);
 });
 
 // create an item on put if id not exists
@@ -128,7 +132,8 @@ tape.test("PUT: items - non existing item", function (t){
       'item id should be feedca75deadbeef0f00d001');
     t.equals(res.body.name, "New Milk",
       'item name should be New Milk');
-  }).end(t.end);
+  })
+  .end(t.end);
 });
 
 tape.test("DELETE: items", function (t){
@@ -151,7 +156,8 @@ tape.test("DELETE: items", function (t){
       'item id should be ' + fixture_id);
     t.equals(res.body.name, "Milk",
       'item name should be Milk');
-  }).end(t.end);
+  })
+  .end(t.end);
 });
 
 //  non existing item
@@ -163,7 +169,8 @@ tape.test("DELETE: items - non existing item", function (t){
   .expect(function (res){
     t.deepEqual(res.body.error, "Not Found",
       'deleting an invalid item should fail');
-  }).end(t.end);
+  })
+  .end(t.end);
 });
 
 
