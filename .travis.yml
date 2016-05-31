@@ -8,3 +8,10 @@ addons:
     - mongodb-3.2-precise
     packages:
     - mongodb-org-server
+deploy:
+  provider: heroku
+  api_key:
+    secure: h3tWYCahZ7xPZaq30l+9omRowqWNpal9goTQd0twVzs+/hHEt35zv0g3CXkty2udYqCMdnxNJhjdK5a/NjBV2OgBCbNHB1L7OEvwk0gOfYlEE3qs2YLPUJPJVrZ8Dtof8irq+iz+Yz1n0Yegx6mvQ6RBf4cKfvr3CY05A11Xc8V2lUUlK07gxGrDy5iczxNVgwR8/Y83fa7z4Vd1ZZr4ElxaemL8xUrRVtGFUBIPZ7BN2iOtTKh55THMkxvGR2sSPGbzlyIUvpW+sPzMmPkhB7oQq/ktSEsrUjT/lINm7xQcvzHa/nJoz4csowHSRZCjwLo+//5VUrPIdbSuEackY29tNFUJFJMCR2DHtWWoKzmbVR0t44znMa0XtQ0yk6BMi4GCzuNnaobJUdYcoeZUOa4aQ1FasvDKpHkI/I1AAkMxGz1nkOOTo6+TNRTakQzs6zxQfRr3y/Ijr1TicqZyHLQRLfyKVEGIp73HsOVc7IeKPTezqXyqUQ/TNkYBzRPZuYx5b5vlOud4m7Hz/3rEwQQNvfmrOqaOOfV8+Yr47rsIIGeEgbiW1KyDfty/IB8iIOX5VFdJ3dm183tc/h9BScGFlnQeo1Vx60wLIllXeB6PedUq6q5BL0/vUx00md0Jye9jJVgzi6JIAAzi+mgrUmNJBA/vQZAEbs+4hZopbuU=
+  app: jay-todo-api
+  on:
+    repo: jay3686/shopping-list
